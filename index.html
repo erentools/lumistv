@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login LumisTV</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      width: 90%;
+      max-width: 400px;
+      background: #1d1d1d;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 165, 0, 0.3);
+      position: relative;
+    }
+    .logo {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo img {
+      height: 40px;
+    }
+    .language-switch {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+    }
+    h2 {
+      text-align: center;
+      margin-top: 50px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      background: #333;
+      color: white;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: orange;
+      border: none;
+      border-radius: 5px;
+      color: #111;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .error {
+      color: red;
+      text-align: center;
+      display: none;
+    }
+    @media screen and (max-width: 480px) {
+      .container {
+        padding: 1.5rem;
+      }
+      .logo img {
+        height: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="https://i.imgur.com/fYuU8P5.png" alt="LumisTV Logo" />
+    </div>
+    <div class="language-switch" onclick="toggleLanguage()">🌐</div>
+    <h2 id="title">Iniciar Sesión</h2>
+    <input type="text" id="email" placeholder="Correo electrónico" />
+    <input type="password" id="password" placeholder="Contraseña" />
+    <div class="error" id="errorText">Usuario o contraseña incorrectos</div>
+    <button onclick="login()" id="loginBtn">Ingresar</button>
+  </div>
+  <script>
+    const translations = {
+      es: {
+        title: "Iniciar Sesión",
+        email: "Correo electrónico",
+        password: "Contraseña",
+        loginBtn: "Ingresar",
+        errorText: "Usuario o contraseña incorrectos"
+      },
+      en: {
+        title: "Login",
+        email: "Email",
+        password: "Password",
+        loginBtn: "Login",
+        errorText: "Invalid username or password"
+      }
+    };
+    let currentLang = "es";
+    function toggleLanguage() {
+      currentLang = currentLang === "es" ? "en" : "es";
+      document.getElementById("title").innerText = translations[currentLang].title;
+      document.getElementById("email").placeholder = translations[currentLang].email;
+      document.getElementById("password").placeholder = translations[currentLang].password;
+      document.getElementById("loginBtn").innerText = translations[currentLang].loginBtn;
+      document.getElementById("errorText").innerText = translations[currentLang].errorText;
+    }
+    function login() {
+      const user = document.getElementById("email").value;
+      const pass = document.getElementById("password").value;
+      const errorBox = document.getElementById("errorText");
+      if (user === "user001" && pass === "lumis") {
+        window.location.href = "https://erentools.wixsite.com/primeplustv";
+      } else {
+        errorBox.style.display = "block";
+      }
+    }
+  </script>
+</body>
+</html>
